@@ -22,6 +22,11 @@ const App: React.FC = () => {
   const [savedStates, setSavedStates] = useState(modelRef.current.getSavedStates());
   const [isRunning, setIsRunning] = useState(false);
 
+  // Apply initial Glider pattern
+  useEffect(() => {
+    controllerRef.current.applyPattern(patterns[4], 1, 1);
+  }, []);
+
   // Subscribe to controller state changes
   useEffect(() => {
     const listener = (b: Board, s: GameSettings) => {

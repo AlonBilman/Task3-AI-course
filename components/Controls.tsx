@@ -34,7 +34,7 @@ const Controls: React.FC<ControlsProps> = ({
 }) => {
   const [rows, setRows] = useState(currentRows);
   const [cols, setCols] = useState(currentCols);
-  const [patternIdx, setPatternIdx] = useState(0);
+  const [patternIdx, setPatternIdx] = useState(4);
 
   const handleSizeChange = () => {
     onSizeChange(rows, cols);
@@ -236,26 +236,32 @@ const Controls: React.FC<ControlsProps> = ({
       >
         Apply Size
       </button>
-      <select
-        value={patternIdx}
-        onChange={e => {
-          setPatternIdx(Number(e.target.value));
-          onPatternSelect(patterns[Number(e.target.value)]);
-        }}
-        style={{
-          ...selectStyle,
-          opacity: isRunning ? 0.7 : 1,
-          cursor: isRunning ? 'not-allowed' : 'pointer',
-          background: isRunning ? '#f7fafc' : 'white',
-        }}
-        disabled={isRunning}
-      >
-        {patterns.map((pattern, idx) => (
-          <option key={pattern.name} value={idx}>
-            {pattern.name}
-          </option>
-        ))}
-      </select>
+      <label style={{
+        ...labelStyle,
+        opacity: isRunning ? 0.7 : 1,
+      }}>
+        Patterns:
+        <select
+          value={patternIdx}
+          onChange={e => {
+            setPatternIdx(Number(e.target.value));
+            onPatternSelect(patterns[Number(e.target.value)]);
+          }}
+          style={{
+            ...selectStyle,
+            opacity: isRunning ? 0.7 : 1,
+            cursor: isRunning ? 'not-allowed' : 'pointer',
+            background: isRunning ? '#f7fafc' : 'white',
+          }}
+          disabled={isRunning}
+        >
+          {patterns.map((pattern, idx) => (
+            <option key={pattern.name} value={idx}>
+              {pattern.name}
+            </option>
+          ))}
+        </select>
+      </label>
     </section>
   );
 };
