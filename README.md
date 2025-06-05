@@ -6,8 +6,7 @@ A React + TypeScript implementation of Conway's Game of Life with a graphical us
 
 1. **Clone the repository**
    ```sh
-   git clone <repository-url>
-   cd conway-game-of-life
+   git clone https://github.com/AlonBilman/Task3-AI-course.git
    ```
 
 2. **Install dependencies**
