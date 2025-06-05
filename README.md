@@ -1,97 +1,98 @@
-# Conway's Game of Life (React + TypeScript, MVC)
+# Conway's Game of Life
 
-## Setup & Run
+A React + TypeScript implementation of Conway's Game of Life with a graphical user interface.
 
-1. **Install dependencies:**
+## Quick Start
+
+1. **Clone the repository**
+   ```sh
+   git clone <repository-url>
+   cd conway-game-of-life
+   ```
+
+2. **Install dependencies**
    ```sh
    npm install
    ```
-2. **Start the app:**
+
+3. **Start the development server**
    ```sh
    npm start
    ```
-3. Open [http://localhost:3000](http://localhost:3000) in your browser.
 
----
+4. Open [http://localhost:3000](http://localhost:3000) in your browser
 
-## Architecture Overview
+## How to Play
 
-This project uses a strict **Model-View-Controller (MVC)** pattern:
+### Basic Controls
+- Click **Start** to begin the simulation
+- Click **Stop** to pause
+- Use **Step** to advance one generation at a time
+- Click **Randomize** to create a random pattern
+- Click **Clear** to reset the grid
 
-- **Model** (`/model/GameModel.ts`, `/model/patterns.ts`):
-  - Manages all game data, rules, and board state
-  - Handles step logic, pattern library, and saving/loading to localStorage
-  - Exposes clean, typed interfaces for state manipulation
+### Grid Interaction
+- Click any cell to toggle it between alive and dead (when simulation is stopped)
+- Adjust grid size using the row and column inputs (10-60 cells)
+- Click **Apply Size** to update the grid dimensions
 
-- **Controller** (`/controller/GameController.ts`):
-  - Orchestrates between Model and View
-  - Handles user actions, simulation timer, and state subscriptions
-  - Exposes a clean API for the View to call
+### Speed Control
+- Use the speed slider to adjust simulation speed
+- Range: 50ms (fast) to 1000ms (slow)
 
-- **View** (`/view/App.tsx`, `/components/`):
-  - Pure React functional components (TypeScript)
-  - Renders the grid, controls, and saved states
-  - No business logic; delegates all logic to the Controller/Model
+### Patterns
+Select from 6 predefined patterns:
+- Glider
+- Pulsar
+- Heart
+- Flower
+- Circle
+- None (empty grid)
 
-- **Types** (`/types/GameOfLife.ts`):
-  - Centralized TypeScript types/interfaces for all layers
+### Saving States
+- Enter a name for your current board state
+- Click **Save Current State** to store it
+- Use **Load** to restore a saved state
+- Use **Delete** to remove unwanted states
 
----
-
-## Saving & Restoring Board States
-
-- **Save:** Enter a custom name and click "Save". The current board is stored in `localStorage`.
-- **Load:** Click "Load" next to a saved state to restore it.
-- **Delete:** Click "Delete" to remove a saved state.
-- All saved states persist in your browser until deleted.
-
----
-
-## React + TypeScript Design Decisions
-
-- **Functional Components & Hooks:** All UI is built with React functional components and hooks (`useState`, `useEffect`, `useCallback`).
-- **No Business Logic in View:** All game logic is in the Model/Controller, not in React components.
-- **Typed Interfaces:** All data and props are strictly typed for safety and clarity.
-- **Performance:** `React.memo` is used for the grid to avoid unnecessary re-renders.
-- **Accessibility:** ARIA roles, labels, and keyboard navigation are provided for all controls and the grid.
-- **Responsiveness:** The UI adapts to different screen sizes and is usable on desktop and mobile.
-- **SOLID Principles:** Code is modular, single-responsibility, and easy to extend.
-
----
-
-## Key Files
-
-- `types/GameOfLife.ts` — TypeScript types/interfaces
-- `model/GameModel.ts` — Game logic, board state, patterns, save/load
-- `model/patterns.ts` — Predefined patterns (glider, pulsar, etc.)
-- `controller/GameController.ts` — Orchestrates between Model and View
-- `components/Grid.tsx` — Renders the game grid
-- `components/Controls.tsx` — Simulation controls (start, stop, speed, size, patterns)
-- `components/SavedStates.tsx` — Save/load/delete board states
-- `view/App.tsx` — Main React app, wires everything together
-- `view/index.tsx` — React entry point
-
----
-
-## Example: Controller Initialization
-
-```tsx
-// In App.tsx
-const modelRef = useRef(new GameModel(DEFAULT_SETTINGS, patterns));
-const controllerRef = useRef(new GameController(modelRef.current));
-
-useEffect(() => {
-  const listener = (b, s) => { /* update state */ };
-  controllerRef.current.subscribe(listener);
-  return () => controllerRef.current.unsubscribe(listener);
-}, []);
+## Project Structure
+```
+.
+├── components/     # React components
+│   ├── Controls.tsx
+│   ├── Grid.tsx
+│   └── SavedStates.tsx
+├── controller/     # Game controller
+│   └── GameController.ts
+├── model/         # Game model and patterns
+│   ├── GameModel.ts
+│   └── patterns.ts
+├── types/         # TypeScript types
+│   └── GameOfLife.ts
+├── view/          # Main view components
+│   ├── App.tsx
+│   └── index.tsx
+├── public/        # Static assets
+├── dist/          # Build output
+├── webpack.config.js
+├── tsconfig.json
+└── package.json
 ```
 
----
+## Available Scripts
 
-## Notes
-- No plain JavaScript: 100% TypeScript
-- No class-based React components
-- No business logic in View
-- No external state libraries (uses hooks only)
-- Fully modular and maintainable 
+- `npm start` - Start development server
+- `npm run build` - Build for production
+- `npm run type-check` - Run TypeScript type checking
+
+## Requirements
+
+- Node.js (v14 or higher)
+- npm (v6 or higher)
+
+## Browser Support
+
+- Chrome (recommended)
+- Firefox
+- Safari
+- Edge
