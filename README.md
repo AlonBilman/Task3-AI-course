@@ -2,11 +2,18 @@
 
 A React + TypeScript implementation of Conway's Game of Life with a graphical user interface.
 
+## Technologies Used
+
+- React
+- TypeScript
+- Webpack
+
 ## Quick Start
 
 1. **Clone the repository**
    ```sh
    git clone https://github.com/AlonBilman/Task3-AI-course.git
+   cd Task3-AI-course
    ```
 
 2. **Install dependencies**
@@ -18,6 +25,7 @@ A React + TypeScript implementation of Conway's Game of Life with a graphical us
    ```sh
    npm start
    ```
+   The development server includes hot reloading for instant feedback during development.
 
 4. Open [http://localhost:3000](http://localhost:3000) in your browser
 
@@ -40,7 +48,7 @@ A React + TypeScript implementation of Conway's Game of Life with a graphical us
 - Range: 50ms (fast) to 1000ms (slow)
 
 ### Patterns
-Select from 6 predefined patterns:
+Select from 6 predefined patterns (Glider is the default):
 - Glider
 - Pulsar
 - Heart
@@ -72,7 +80,6 @@ Select from 6 predefined patterns:
 │   ├── App.tsx
 │   └── index.tsx
 ├── public/        # Static assets
-├── dist/          # Build output
 ├── webpack.config.js
 ├── tsconfig.json
 └── package.json
